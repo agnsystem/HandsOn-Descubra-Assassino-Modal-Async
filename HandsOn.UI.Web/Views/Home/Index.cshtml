@@ -1,0 +1,71 @@
+﻿@model HandsOn.Dominio.ListaDados
+@{
+    ViewBag.Title = "Hands-on";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2></h2>
+            </hgroup>
+            <center>
+                <p>
+                    Banco de dados - Central de Investigação Policial
+                    <br />
+                    Inspetor Responsavel: Jacques Clouseau
+
+                </p>
+            </center>
+        </div>
+    </section>
+}
+<div id="Opçoes">
+    <h3>Descuba o assassino:</h3>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <div class="row panel">
+                    <br />
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-3">
+                        @Html.Label("Lista de suspeitos")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.IdSuspeito, new SelectList(Model.Suspeitos, "IdSuspeito", "Nome"), "Selecione um suspeito")
+                    </div>
+                </div>
+
+                <div class="row panel">
+                    <br />
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-3">
+                        @Html.Label("Lista de locais")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.IdLocal, new SelectList(Model.Locais, "IdLocal", "Descricao"), "Selecione um Local")
+                    </div>
+                </div>
+
+                <div class="row panel">
+                    <br />
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-3">
+                        @Html.Label("Lista de armas")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.IdArma, new SelectList(Model.Armas, "IdArma", "Descricao"), "Selecione uma arma")
+                    </div>
+                </div>
+                <hr />
+                <div row>
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-primary btn-sm" type="button" onclick="MensagemConfirma('Novo caso','Deseja iniciar um novo caso?','@Url.Action("Index", "Home")')">Novo Caso</button>
+                        <input class="btn btn-success btn-sm" type="submit" value="Enviar" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
